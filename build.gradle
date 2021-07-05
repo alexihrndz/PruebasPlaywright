@@ -1,0 +1,67 @@
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+
+ext {
+    serenityVersion = '2.4.34'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:2.4.34"
+        classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.8"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'org.sonarqube'
+apply plugin: 'com.github.sherter.google-java-format'
+
+compileJava.dependsOn 'googleJavaFormat'
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+test {systemProperties = System.properties}
+
+
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
+
+
+dependencies {
+
+    testCompile 'io.cucumber:cucumber-java8:6.10.4'
+    testCompile 'io.cucumber:cucumber-junit:6.10.4'
+
+    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    implementation     "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation     "net.serenity-bdd:serenity-cucumber6:$rootProject.ext.serenityVersion"
+    implementation     "net.serenity-bdd:serenity-screenplay-playwright:$rootProject.ext.serenityVersion"
+    implementation group: 'com.microsoft.playwright', name: 'playwright', version: '1.10.0'
+
+    implementation "org.apache.commons:commons-lang3:3.0"
+    testImplementation 'org.assertj:assertj-core:3.13.2'
+    testImplementation 'org.slf4j:slf4j-api:1.7.2'
+    testImplementation 'org.slf4j:slf4j-log4j12:1.7.2'
+
+}
+
+gradle.startParameter.continueOnFailure = true
