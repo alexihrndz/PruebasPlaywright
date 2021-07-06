@@ -22,8 +22,8 @@ public class Buscar implements Task {
 
   @Override
   public <T extends Actor> void performAs(T actor) {
-    actor.attemptsTo(Enter.theValue(nombreVideo).into(YouTubeHomePage.TXT_BUSCAR),
+    actor.attemptsTo(
+        Enter.theValue(nombreVideo).into(YouTubeHomePage.TXT_BUSCAR),
         Click.on(YouTubeHomePage.BTN_BUSCAR));
-
   }
 }
