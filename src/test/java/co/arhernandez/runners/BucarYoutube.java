@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
     features =
-        "/Users/alexihrndz/Documents/Banistmo/PruebasPlaywright/src/test/resources/features/prueba.feature",
+        "/Users/alexihrndz/Documents/Banistmo/PruebasPlaywright/src/test/resources/features/buscar_youtube.feature",
     glue = {"co.arhernandez.stepdefinitions"},
     snippets = SnippetType.CAMELCASE)
-public class PruebaRunner {}
+public class BucarYoutube {}

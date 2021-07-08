@@ -10,7 +10,9 @@ public class YouTubeHomePage {
       Target.the("Input buscar video").locatedBy("input#search");
   public static final Target BTN_BUSCAR =
       Target.the("Boton buscar").locatedBy("button#search-icon-legacy");
-  public static final String LBL_TITULOS = "[class='title-and-badge style-scope ytd-video-renderer']";
+  public static final Target LBL_TITULOS =
+      Target.the("Lista de Canciones")
+          .locatedBy("(//*[@id='video-title']/yt-formatted-string)[1]");
 
   private YouTubeHomePage() {}
 }
