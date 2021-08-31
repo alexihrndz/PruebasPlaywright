@@ -5,7 +5,7 @@ repositories {
 
 
 ext {
-    serenityVersion = '2.4.34'
+    serenityVersion = '2.4.35'
 }
 
 buildscript {
@@ -53,9 +53,11 @@ dependencies {
     testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
     testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
     implementation     "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
-    implementation     "net.serenity-bdd:serenity-cucumber6:$rootProject.ext.serenityVersion"
+    // https://mvnrepository.com/artifact/net.serenity-bdd/serenity-cucumber6
+    implementation 'net.serenity-bdd:serenity-cucumber6:2.4.34'
+
     implementation     "net.serenity-bdd:serenity-screenplay-playwright:$rootProject.ext.serenityVersion"
-    implementation group: 'com.microsoft.playwright', name: 'playwright', version: '1.10.0'
+    implementation group: 'com.microsoft.playwright', name: 'playwright', version: '1.13.0'
 
     implementation "org.apache.commons:commons-lang3:3.0"
     testImplementation 'org.assertj:assertj-core:3.13.2'

@@ -7,8 +7,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-    features =
-        "/Users/alexihrndz/Documents/Banistmo/PruebasPlaywright/src/test/resources/features/buscar_youtube.feature",
+    features = "src/test/resources/features/autenticacion.feature",
     glue = {"co.arhernandez.stepdefinitions"},
-    snippets = SnippetType.CAMELCASE)
-public class BucarYoutube {}
+    snippets = SnippetType.CAMELCASE,
+    tags = "@LoginBanistmo2")
+public class Login {}
