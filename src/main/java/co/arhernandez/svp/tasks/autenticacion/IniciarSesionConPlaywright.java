@@ -8,11 +8,8 @@ import com.microsoft.playwright.Browser.NewContextOptions;
 import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Page.ScreenshotOptions;
 import com.microsoft.playwright.Playwright;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 
@@ -33,7 +30,7 @@ public class IniciarSesionConPlaywright implements Task {
   @Override
   public <T extends Actor> void performAs(T actor) {
     try (Playwright playwright = Playwright.create()) {
-      Browser browser = playwright.chromium().launch(new LaunchOptions().setHeadless(true));
+      Browser browser = playwright.chromium().launch(new LaunchOptions().setHeadless(false));
       BrowserContext browserContext =
           browser.newContext(new NewContextOptions().setRecordVideoDir(Paths.get("videos/")));
       // BrowserContext browserContext = browser.newContext();
@@ -48,22 +45,10 @@ public class IniciarSesionConPlaywright implements Task {
       page.click("button#btn_login");
       page.screenshot(options());
 
-      String timeStamp =
-          new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
-              .format(new Timestamp(System.currentTimeMillis()));
-      ScreenshotOptions options =
-          new Page.ScreenshotOptions()
-              .setPath(
-                  Paths.get(
-                      System.getProperty("sreenshots.path", "target/site/caps/")
-                          + timeStamp
-                          + "capture"
-                          + ".png"));
-      page.screenshot(options);
-
       Page.WaitForSelectorOptions waitForSelectorOptions =
           new Page.WaitForSelectorOptions().setTimeout(30000);
       page.waitForSelector("//div[@class='main-content']", waitForSelectorOptions);
+      page.screenshot(options());
       page.isVisible("//div[@class='main-content']");
     }
   }

@@ -9,7 +9,7 @@ import co.arhernandez.svp.tasks.autenticacion.IniciarSesion;
 import co.arhernandez.svp.tasks.autenticacion.IniciarSesionConPlaywright;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
 import io.cucumber.java.Before;
-import io.cucumber.java.es.Cuando;
+import io.cucumber.java.ast.Cuando;
 import io.cucumber.java.es.Entonces;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;

@@ -13,8 +13,8 @@ import net.serenitybdd.screenplay.playwright.interactions.Open;
 
 public class IniciarSesion implements Task {
 
-  private String usuario;
-  private String clave;
+  private final String usuario;
+  private final String clave;
 
   public IniciarSesion(String usuario, String clave) {
     this.usuario = usuario;
@@ -27,9 +27,8 @@ public class IniciarSesion implements Task {
 
   @Override
   public <T extends Actor> void performAs(T actor) {
-
-    actor.attemptsTo(Open.url("https://personas.banistmolabs.com"));
     actor.attemptsTo(
+        Open.url("https://personas.banistmolabs.com"),
         Enter.theValue(usuario).into(TXT_USUARIO),
         Click.on(TXT_USUARIO),
         Click.on(LoginPage.BTN_CONTINUAR),
